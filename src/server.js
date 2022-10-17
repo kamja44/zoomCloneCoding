@@ -19,16 +19,19 @@ const handleListen = () => console.log(`connect to http://localhost:${port}`);
 const server = http.createServer(app);
 const wss = new WebSocket.Server({server});
 
+const sockets = [];
 
 wss.on("connection", (socket) => {
+    sockets.push(socket);
     console.log("Connected to Browser");
     socket.on("close", () => {
         console.log("DisConnected from Browser");
     });
     socket.on("message", (message) => {
-        console.log(message.toString());
+        sockets.forEach(aSocket => {
+            aSocket.send(message.toString());
+        });
     });
-    socket.send("hello!");
 });
 
 // app.listen
