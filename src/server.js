@@ -37,11 +37,6 @@ wss.on("connection", (socket) => {
                 case "nickname":
                     socket["nickname"]=message.payload;
             }
-            // if(parsed.type === "new_message"){
-            //     sockets.forEach((aSocket) => aSocket.send(parsed.payload));
-            // }else if(parsed.type === "nickname"){
-            //     console.log(parsed.payload);
-            // }
         });
     });
 

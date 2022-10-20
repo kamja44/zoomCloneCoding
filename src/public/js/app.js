@@ -7,9 +7,9 @@ socket.addEventListener("open", () => {
 });
 
 socket.addEventListener("message", (message) => {
-    const li = document.createElement("li");
-    li.innerText = message.data;
-    messageList.appendChild(li);
+    // const li = document.createElement("li");
+    // li.innerText = message.data;
+    // messageList.appendChild(li);
 });
 
 socket.addEventListener("close",() => {
@@ -24,6 +24,9 @@ function handleSubmit(event){
     event.preventDefault();
     const input = messageForm.querySelector("input");
     socket.send(makeMessage("new_message", input.value));
+    const li = document.createElement("li");
+    li.innerText = `You: ${input.value}`;
+    messageList.appendChild(li);
     input.value="";
 }
 messageForm.addEventListener("submit", handleSubmit);
